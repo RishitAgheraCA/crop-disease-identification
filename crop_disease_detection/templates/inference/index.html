@@ -17,6 +17,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static '/css/style.css' %}" rel="stylesheet" />
+        <script src="{% static '/js/jquery.js' %}"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -42,13 +43,18 @@
                         <h1 class="text-white font-weight-bold">Your Favorite Place for Free Bootstrap Themes</h1>
                         <hr class="divider"/>
                     </div>
-                    <form method="POST" class="post-form" enctype="multipart/form-data">
+                    <form method="POST" class="post-form" id="imageForm" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="col-lg-8 align-self-baseline">
     <!--                        <label class="ext-white-75 mb-5">Default file input example</label>-->
     <!--                        <input id="input-b2" name="input-b2" type="file" class="file" data-show-preview="false">-->
+                            {% if not success %}
                             <input type="file" class="text-white-75 mb-5" id="customFile" name="imagefile" />
     <!--                        <p class="text-white-75 mb-5">Diseased or not?</p>-->
-                            <a class="btn btn-primary btn-xl" href="#about">Inference</a>
+                            <a class="btn btn-primary btn-xl" id="uploader" href="#">Inference</a>
+                            {% else %}
+                            <h1 class="text-white font-weight-bold">{{predict_msg}}</h1>
+                            {% endif %}
                         </div>
                     </form>
                 </div>
@@ -251,6 +257,15 @@
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Company Name</div></div>
         </footer>
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#uploader").click(function() {
+                  $("#imageForm").submit()
+                });
+            });
+        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
