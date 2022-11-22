@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Creative - Start Bootstrap Theme</title>
+        <title>Crop Disease Identification</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico'%}" />
         <!-- Bootstrap Icons-->
@@ -17,20 +17,20 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static '/css/style.css' %}" rel="stylesheet" />
-        <script src="{% static '/js/jquery.js' %}"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">Crop Disease Identification</a>
+<!--                <a class="navbar-brand" style="text-align:right;">Lambton College Project</a>-->
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Lambton College Project</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -38,27 +38,41 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
-                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Your Favorite Place for Free Bootstrap Themes</h1>
+                <div class="row align-items-center" style="min-height:80vh">
+                    <div class="col-md-12 text-center">
+                        <h1 class="text-white font-weight-bold">Plant Disease Detection</h1>
                         <hr class="divider"/>
+                        <form method="POST" class="post-form" id="imageForm" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- <input id="input-b2" name="input-b2" type="file" class="file" data-show-preview="false"> -->
+                                <div class="col-md-6 offset-3">
+<!--                                    <label class="text-white">Default file input example</label>-->
+<!--                                    <hr class="divider"/>-->
+                                    {% if not success %}
+                                        <input type="file" class="text-white-75 mb-5" id="customFile" name="imagefile" />
+                                        <a class="btn btn-primary btn-xl" id="uploader" href="#">Inference</a>
+<!--                                    {% else %}-->
+                                        <h1 class="text-white font-weight-bold">{{predict_msg}}</h1>
+                                    {% endif %}
+                                </div>
+                            </form>
                     </div>
-                    <form method="POST" class="post-form" id="imageForm" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="col-lg-8 align-self-baseline">
+                </div>
+                <!-- <div class="gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Plant Disease Detection</h1>
+                        <hr class="divider"/>
+                    </div> -->
+                    <!-- <form method="POST" class="post-form" enctype="multipart/form-data">
+                        <div class="col-lg-8 align-self-baseline"> -->
     <!--                        <label class="ext-white-75 mb-5">Default file input example</label>-->
     <!--                        <input id="input-b2" name="input-b2" type="file" class="file" data-show-preview="false">-->
-                            {% if not success %}
-                            <input type="file" class="text-white-75 mb-5" id="customFile" name="imagefile" />
+                            <!-- <input type="file" class="text-white-75 mb-5" id="customFile" name="imagefile" /> -->
     <!--                        <p class="text-white-75 mb-5">Diseased or not?</p>-->
-                            <a class="btn btn-primary btn-xl" id="uploader" href="#">Inference</a>
-                            {% else %}
-                            <h1 class="text-white font-weight-bold">{{predict_msg}}</h1>
-                            {% endif %}
-                        </div>
-                    </form>
+                            <!-- <a class="btn btn-primary btn-xl" href="#about">Inference</a> -->
+                        <!-- </div> -->
+                    <!-- </form> -->
                 </div>
-            </div>
         </header>
         <!-- About-->
 <!--        <section class="page-section bg-primary" id="about">-->
@@ -257,15 +271,6 @@
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Company Name</div></div>
         </footer>
-        <script src="{% static 'js/jquery.js' %}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $("#uploader").click(function() {
-                  $("#imageForm").submit()
-                });
-            });
-        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
@@ -277,5 +282,13 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#uploader").click(function() {
+                  $("#imageForm").submit()
+                });
+            });
+        </script>
     </body>
 </html>

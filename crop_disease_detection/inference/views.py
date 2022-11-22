@@ -4,14 +4,14 @@ import cv2, numpy as np
 from .services.inference_service.inference_engine import Inference
 from PIL import Image
 # Create your views here.
-def home_page(request):
-    return render(request, 'inference/index.html')
+# def home_page(request):
+#     return render(request, 'inference/index.html')
 
 
 class InferenceView(View):
     def get(self, request):
 
-        return render(request, 'inference/index.html')
+        return render(request, 'inference/index-2.html')
 
     def post(self, request):
         # print(request)
@@ -25,4 +25,4 @@ class InferenceView(View):
             messege = 'Crop is Diseased'
         messege = {'predict_msg': messege,
                    'success': True}
-        return render(request, 'inference/index.html',messege)
+        return render(request, 'inference/index-2.html',messege)
